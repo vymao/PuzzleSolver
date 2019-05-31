@@ -77,6 +77,9 @@ public class Board implements WorldState{
                 if (board[i][j] != 0) {
                     int rowLevel = board[i][j] / board.length;
                     int colLevel = (board[i][j] % board.length) - 1;
+                    if (colLevel == -1) {
+                        colLevel = board.length - 1;
+                    }
                     if (rowLevel != i || colLevel != j) {
                         misplaced += 1;
                     }
@@ -90,10 +93,15 @@ public class Board implements WorldState{
         int distance = 0;
         for (int i = 0; i < (board.length); i += 1) {
             for (int j = 0; j < (board.length); j += 1) {
-                int rowLevel = board[i][j] / board.length;
-                int colLevel = board[i][j] % board.length;
-                if (rowLevel != i || colLevel != j) {
-                   distance += (Math.abs(rowLevel - i) + Math.abs(colLevel - j));
+                if (board[i][j] != 0) {
+                    int rowLevel = board[i][j] / board.length;
+                    int colLevel = board[i][j] % board.length;
+                    if (colLevel == -1) {
+                        colLevel = board.length - 1;
+                    }
+                    if (rowLevel != i || colLevel != j) {
+                        distance += (Math.abs(rowLevel - i) + Math.abs(colLevel - j));
+                    }
                 }
             }
         }
