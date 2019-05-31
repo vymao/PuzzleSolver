@@ -7,16 +7,18 @@ public class Solver {
         public WorldState node;
         public int moveCount;
         public WorldState pNode;
+        private int distance;
 
         private searchNode (WorldState a, int b, WorldState c) {
             node = a;
             moveCount = b;
             pNode = c;
+            distance = a.estimatedDistanceToGoal();
         }
 
         @Override
         public int estimatedDistanceToGoal() {
-            return node.estimatedDistanceToGoal();
+            return distance;
         }
 
         @Override
@@ -27,8 +29,8 @@ public class Solver {
 
     private class distanceComparator implements Comparator<searchNode> {
         public int compare(searchNode a, searchNode b) {
-            int totalDistance_a = a.moveCount + a.node.estimatedDistanceToGoal();
-            int totalDistance_b = b.moveCount + b.node.estimatedDistanceToGoal();
+            int totalDistance_a = a.moveCount + a.distance;
+            int totalDistance_b = b.moveCount + b.distance;
             return totalDistance_a - totalDistance_b;
         }
     }
@@ -52,15 +54,13 @@ public class Solver {
                 Iterator<WorldState> neighbors = LoN.iterator();
                 while (neighbors.hasNext()) {
                     WorldState nearest = neighbors.next();
-                    Set<WorldState> keys = key.keySet();
                     if (!key.containsKey(nearest)) {
                         searchNode neighbor = new searchNode(nearest, currentNode.moveCount + 1, currentNode.node);
                         key.put(nearest, neighbor);
                         queue.insert(neighbor);
-                        System.out.println(queue.size());
                     } else {
                         searchNode neighbor = key.get(nearest);
-                        if (neighbor.moveCount > (currentNode.moveCount + 1) && neighbor.pNode != currentNode.node) {
+                        if (neighbor.moveCount > (currentNode.moveCount + 1) && neighbor.pNode != currentNode.node && !neighbor.pNode.equals(currentNode.node)) {
                             neighbor.moveCount = currentNode.moveCount + 1;
                             neighbor.pNode = currentNode.node;
                             queue.insert(neighbor);
@@ -72,9 +72,7 @@ public class Solver {
         }
     }
 
-    public int moves() {
-        return currentNode.moveCount;
-    }
+    public int moves() { return currentNode.moveCount; }
 
     public Iterable<WorldState> solution() {
         List<WorldState> solution = new ArrayList<>();
