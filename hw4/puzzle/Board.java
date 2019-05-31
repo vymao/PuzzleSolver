@@ -19,7 +19,7 @@ public class Board implements WorldState{
         return s.toString();
     }
 
-    private int board[][];
+    private final int board[][];
 
     public Board(int[][] tiles) {
         board = tiles;
@@ -115,6 +115,7 @@ public class Board implements WorldState{
     }
 
     public boolean equals(Object y) {
+        if (y == null) {return false;}
         if (y.getClass() != this.getClass()) {return false;}
         Board z = (Board) y;
         if (z.size() != this.size()) {return false;}
