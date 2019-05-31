@@ -95,7 +95,7 @@ public class Board implements WorldState{
             for (int j = 0; j < (board.length); j += 1) {
                 if (board[i][j] != 0) {
                     int rowLevel = board[i][j] / board.length;
-                    int colLevel = board[i][j] % board.length;
+                    int colLevel = board[i][j] % board.length - 1;
                     if (colLevel == -1) {
                         colLevel = board.length - 1;
                     }
