@@ -79,6 +79,7 @@ public class Board implements WorldState{
                     int colLevel = (board[i][j] % board.length) - 1;
                     if (colLevel == -1) {
                         colLevel = board.length - 1;
+                        rowLevel = rowLevel - 1;
                     }
                     if (rowLevel != i || colLevel != j) {
                         misplaced += 1;
@@ -114,7 +115,10 @@ public class Board implements WorldState{
     }
 
     public boolean equals(Object y) {
+        if (y.getClass() != this.getClass()) {return false;}
         Board z = (Board) y;
+        if (z.size() != this.size()) {return false;}
+
         boolean equal = true;
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {

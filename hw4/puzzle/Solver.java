@@ -60,7 +60,7 @@ public class Solver {
                         queue.insert(neighbor);
                     } else {
                         searchNode neighbor = key.get(nearest);
-                        if (neighbor.moveCount > (currentNode.moveCount + 1) && neighbor.pNode != currentNode.node && !neighbor.pNode.equals(currentNode.node)) {
+                        if (neighbor.moveCount > (currentNode.moveCount + 1)) {
                             neighbor.moveCount = currentNode.moveCount + 1;
                             neighbor.pNode = currentNode.node;
                             queue.insert(neighbor);
