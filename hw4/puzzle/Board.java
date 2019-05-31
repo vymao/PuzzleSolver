@@ -98,6 +98,7 @@ public class Board implements WorldState{
                     int colLevel = (board[i][j] % board.length) - 1;
                     if (colLevel == -1) {
                         colLevel = board.length - 1;
+                        rowLevel = rowLevel - 1;
                     }
                     if (rowLevel != i || colLevel != j) {
                         distance += (Math.abs(rowLevel - i) + Math.abs(colLevel - j));
