@@ -22,7 +22,12 @@ public class Board implements WorldState{
     private final int board[][];
 
     public Board(int[][] tiles) {
-        board = tiles;
+        board = new int [tiles.length][tiles.length];
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                board[i][j] = tiles[i][j];
+            }
+        }
     }
 
     public int tileAt(int i, int j) {

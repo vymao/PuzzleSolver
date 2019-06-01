@@ -72,18 +72,18 @@ public class CommonBugDetector {
 
     public static void main(String[] args) {
         CommonBugPuzzleState cbps = new CommonBugPuzzleState();
-        Solver s = new Solver(cbps);
+        Solver2 s = new Solver2(cbps);
 
         // s.moves() should be 5
         System.out.println("s.moves() should be 5, and your s.moves() is: " + s.moves());
-/*
+
         AlphabetEasyPuzzle aep = new AlphabetEasyPuzzle('a');
-        Solver s3 = new Solver(aep);
+        Solver2 s3 = new Solver2(aep);
         System.out.println("TODO: Print out the number of total things ever"
                            + " enqueued in your MinPQ and compare to the comments.");
         // if you print out the total number of items enqueued by s3
         // it should be approximately 25, not approximately 50.
-        */
+
 
     }
 }

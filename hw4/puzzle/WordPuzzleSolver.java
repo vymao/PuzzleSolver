@@ -11,7 +11,7 @@ public class WordPuzzleSolver {
         String goal = "nurse";
 
         Word startState = new Word(start, goal);
-        Solver solver = new Solver(startState);
+        Solver2 solver = new Solver2(startState);
 
         StdOut.println("Minimum number of moves = " + solver.moves());
         for (WorldState ws : solver.solution()) {
